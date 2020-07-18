@@ -13,17 +13,23 @@ class RandomNameSelector extends Component<Props> {
     };
 
     onRandomlySelectName() {
-        if (this.props.names.length < 2) {
+        const { names } = this.props;
+        const { selectedName } = this.state;
+
+        if (!names.length) {
             this.setState({ showAlert: true });
+            return;
+        } else if (names.length === 1) {
+            this.setState({ selectedName: names[0], showAlert: false });
             return;
         };
     
-        let randomName = this.state.selectedName;
+        let randomName = selectedName;
         let randomNum = 0;
 
-        while(randomName === this.state.selectedName) {
-            randomNum = generateRandomNum(this.props.names.length);
-            randomName = this.props.names[randomNum];
+        while(randomName === selectedName && names.length > 1) {
+            randomNum = generateRandomNum(names.length);
+            randomName = names[randomNum];
         }
 
         this.setState({ selectedName: randomName, showAlert: false });
@@ -38,6 +44,7 @@ class RandomNameSelector extends Component<Props> {
                     </div>
                 )}
                 
+                <p>Selected Name: {this.state.selectedName ? this.state.selectedName : ""}</p>
 
                 <button
                     type="button"
@@ -46,8 +53,6 @@ class RandomNameSelector extends Component<Props> {
                 >
                     Select a random name 
                 </button>
-
-                <span>{this.state.selectedName ? this.state.selectedName : "name..."}</span>
             </div>
         );
     }

@@ -9,7 +9,7 @@ import NamesList from './components/NamesList';
 
 class Index extends Component {
     state = {
-        names: [],
+        names: [] as Array<string>,
     };
 
     render() {
@@ -22,7 +22,9 @@ class Index extends Component {
                 <div className="container">
                     <AddName
                         onAddName={(name: string) => {
-                            this.setState({ names: [...this.state.names, name] })
+                            if (!this.state.names.includes(name)) {
+                                this.setState({ names: [...this.state.names, name] })
+                            }
                         }}
                     />
 
