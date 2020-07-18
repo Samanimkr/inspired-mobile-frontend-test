@@ -7,11 +7,18 @@ type Props = {
 class AddName extends Component<Props> {
     state = {
         inputValue: "",
+        showAlert: false,
     };
 
     render() {
         return (
             <div>
+                {this.state.showAlert && (
+                    <div className="alert alert-danger" role="alert">
+                        Please enter a name before trying to add it to the list.
+                    </div>
+                )}
+
                 <label>Enter name to add:</label>
 
                 <div className="input-group mb-3">
@@ -29,8 +36,13 @@ class AddName extends Component<Props> {
                             type="button"
                             className="btn btn-outline-secondary"
                             onClick={() => {
+                                if (this.state.inputValue === "") {
+                                    this.setState({ showAlert: true });
+                                    return;
+                                }
+
                                 this.props.onAddName(this.state.inputValue);
-                                this.setState({ inputValue: '' });
+                                this.setState({ inputValue: '', showAlert: false });
                             }}
                         >
                             Add
