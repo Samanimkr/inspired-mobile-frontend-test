@@ -2,7 +2,7 @@ import React from 'react';
 
 import NameItem from './NameItem';
 
-const NamesList = (props: { names: Array<Text>, onRemoveName: Function }) => (
+const NamesList = (props: { names: Array<string>, onRemoveName: Function }) => (
     <ul className="list-group">
         {props.names.map((name, index) => (
             <NameItem key={index} name={name} onRemoveName={() => props.onRemoveName(name)}/>

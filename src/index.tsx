@@ -17,14 +17,14 @@ class Index extends Component {
                 <h1>Inspired Mobile Front-End Test</h1><br/>
 
                 <AddName
-                    onAddName={(name: Text) => {
+                    onAddName={(name: string) => {
                         this.setState({ names: [...this.state.names, name] })
                     }}
                 />
 
                 <NamesList
                     names={this.state.names}
-                    onRemoveName={(name: Text) => {
+                    onRemoveName={(name: string) => {
                         const names = this.state.names;
                         names.splice(names.findIndex(item => item === name), 1);
 

@@ -1,17 +1,17 @@
 import React from 'react';
 
-const NameItem = (props: { name: Text, onRemoveName: Function }) => (
+const NameItem = (props: { name: string, onRemoveName: Function }) => (
     <div>
        <li className="list-group-item">
-            <button
+           {props.name}
+
+           <button
                 type="button"
-                className="btn btn-sm btn-outline-danger"
+                className="btn btn-sm btn-outline-danger float-right"
                 onClick={() => props.onRemoveName()}
             >
                 X
             </button>
-
-           {props.name}
         </li>
     </div>
 );
